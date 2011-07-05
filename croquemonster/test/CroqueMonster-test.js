@@ -35,22 +35,5 @@ vows.describe('Création d\'un objet CroqueMonster').addBatch({
                 assert.equal(res.length,0);
             }
         },
-    },
-    'On crée un objet CroqueMonster correct,': {
-        topic: new CroqueMonster('jcreigno','8aRwWteuxxeUOMistbp1'),
-        'on appelle la méthode monsters :': {
-            topic: function(croc) { croc.monsters(this.callback)},
-            'on récupère les monstres' : function(err, res){
-                assert.ok(res);
-                assert.ok(res.length > 0);
-            }
-        },
-        'on appelle la méthode contracts :': {
-            topic: function(croc) { croc.contracts(this.callback)},
-            'on récupère les contrats' : function(err, res){
-                assert.ok(res);
-                assert.ok(res.length > 0);
-            }
-        }
     }
 }).export(module); // Export the Suite
