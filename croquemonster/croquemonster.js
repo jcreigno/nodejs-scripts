@@ -6,8 +6,8 @@ var CroqueMonster = require('./CroqueMonster').CroqueMonster;
 var _ = require('underscore')._;
 
 // Command line args
-var USERNAME = process.ARGV[2];
-var APIKEY = process.ARGV[3];
+var USERNAME = process.argv[2];
+var APIKEY = process.argv[3];
 
 if (!USERNAME || !APIKEY)
   return console.log("Usage: node croquemonster.js <croc_username> <croc_apikey>");
