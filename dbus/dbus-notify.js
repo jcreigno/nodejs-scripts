@@ -64,7 +64,7 @@ dbusMsg.on ("error", function (error) {
 //dbusMsg.appendArgs('s','Hello');
 //dbusMsg.appendArgs('s','from node dbus');
 //dbusMsg.appendArgs('a',[]);
-dbusMsg.appendArgs('susssasa{sv}i', 'node',0,'/usr/share/icons/gnome/48x48/status/software-update-urgent.png','Hello','from node dbus',[''],{'urgency':1},-1);
+dbusMsg.appendArgs('susssasa{sv}i', 'node',0,'/usr/share/icons/gnome/scalable/status/software-update-urgent-symbolic.svg','Hello','from node dbus',[''],{'urgency':1},-1);
 //send signal on session bus
 //check signal receipt in 'test-signal-listener' process
 //or on your terminal with $dbus-monitor --session
