@@ -1,4 +1,4 @@
-var dbus = require('node-dbus');
+var dbus = require('node-dbus'), util = require('util');
 
 // introspect dbus service org.freedesktop.Notifications
 //dbus-send --print-reply --session --dest="org.freedesktop.Notifications" /org/freedesktop/Notifications org.freedesktop.DBus.Introspectable.Introspect
@@ -23,6 +23,10 @@ var dbus = require('node-dbus');
 
 // http://www.galago-project.org/specs/notification/0.9/x408.html
 
+if(!process.argv || process.argv.length < 3){
+    console.log('provide message !');
+    process.exit(-1);
+}
 
 var dbusMsg = Object.create(dbus.DBusMessage, {
   destination: {
@@ -64,8 +68,12 @@ dbusMsg.on ("error", function (error) {
 //dbusMsg.appendArgs('s','Hello');
 //dbusMsg.appendArgs('s','from node dbus');
 //dbusMsg.appendArgs('a',[]);
-dbusMsg.appendArgs('susssasa{sv}i', 'node',0,'/usr/share/icons/gnome/scalable/status/software-update-urgent-symbolic.svg','Hello','from node dbus',[''],{'urgency':1},-1);
+var title = process.argv[2];
+var msg = process.argv.slice(3).join(' ');
+dbusMsg.appendArgs('susssasa{sv}i', 'node',0,'/usr/share/icons/gnome/scalable/status/software-update-urgent-symbolic.svg',title,msg,[''],{'urgency':1},-1);
 //send signal on session bus
 //check signal receipt in 'test-signal-listener' process
 //or on your terminal with $dbus-monitor --session
 dbusMsg.send();
+
+dbusMsg.closeConnection();
