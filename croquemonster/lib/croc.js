@@ -1,4 +1,7 @@
-/**
+
+exports.croc = function(){
+
+/*
  * Extrait du contrat les caractéristique intéressante pour l'estimation.
  * @api private
  */
@@ -6,15 +9,14 @@ function carac (c){
   return {'sadism':c.sadism,'ugliness':c.ugliness,'power':c.power,'greediness':c.greediness};
 }
 
-/**
- * Extrait du contrat les caractéristique intéressante pour l'estimation.
+/* Extrait du contrat les caractéristique intéressante pour l'estimation.
  * 95 + 5 x ([compétence du monstre] - [compétence requise]) - difficulté
+ * source : http://www.twinpedia.com/croquemonster/contrats
  * @api private
  */
 function estimateSimple (m, c) {
     // Le sadisme
-    // 95 + 5 x ([compétence du monstre] - [compétence requise]) -
-    // difficulté
+    // 95 + 5 x ([compétence du monstre] - [compétence requise]) - difficulté
     var defaultEst = 5;
     var result = 1;
     for (var carac in m) {
@@ -28,11 +30,9 @@ function estimateSimple (m, c) {
     return result / 1000000;
 }
 
-exports.croc = function(){
 
 return {
-    /**
-     * Le pourcentage de réussite pour chaque compétence est donné par :
+    /* Le pourcentage de réussite pour chaque compétence est donné par :
      * 
      * <pre>
      * 95 + 5 x ([compétence du monstre] - [compétence requise]) - difficulté
@@ -54,12 +54,11 @@ return {
      */
     estimate: function(m, c) {
         var estimate = estimateSimple(carac(m), c);
-        
         // controle :
         // 100 + 5 x ([contrôle du monstre] - k x [gourmandise du monstre])
         if (c.greediness == 0) {
             var k = 1;
-            switch (c.kind) {
+            switch (parseInt(c.kind)) {
               case 3:
 	                k = 2;
 	                break;
@@ -75,6 +74,6 @@ return {
 
         }
         return estimate;
-    },
+    }
 
 } }();

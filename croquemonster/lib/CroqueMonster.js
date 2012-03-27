@@ -2,46 +2,29 @@
 var http = require('http'),
     _ = require('underscore')._,
     croc = require('./croc').croc,
-    sax = require('sax');
-
-/** Connection to croquemonter API */
-var headers = {
-  'Host'    : "www.croquemonster.com"
-};
-
-/** Croquemonter API client */
-var crocClient = http.createClient(80, "www.croquemonster.com");
+    sax = require('sax'),
+    request = require('request');
 
 /**
- * CroqueMonster constructor
- * @constructor
- */
+ * == Constants ==
+ *
+ * Http host headers.
+**/
+
+var host = 'http://www.croquemonster.com';
+
+
+/** section: CroqueMonster
+ * Constructor
+**/
+
 var CroqueMonster = exports.CroqueMonster = function(agency,api){
     this.agency = agency;
     this.api = api;
 };
 
-function callCroc(resource,handler){
-    var request = crocClient.request("GET", resource, headers);
-    request.on('response', function (response) {
-        if(response.statusCode != 200) {console.log('STATUS: ' + response.statusCode);}
-        response.setEncoding('utf8');
-        var str = "";
-        response.on('data', function (chunk) {
-            str+= chunk;
-        });
-        response.on('end', function () {
-            handler(null,str);
-        });
-        response.on('error', function (e) {
-            handler(e,null);
-        });
-    });
-    request.end();
-}
-
 function wrapHandler (tagName, handler){
-    return function(err,str){
+    return function(err,res,str){
         var parser = sax.parser(true);
         var coll = [];
         parser.onopentag = function (node) {
@@ -55,35 +38,43 @@ function wrapHandler (tagName, handler){
 }
 
 /**
- * @api private
- */
- 
+ * CroqueMonster.croc([resource],[handler]) -> undefined
+ * - resource (String): remote resource name
+ * - handler (Function): callback handler
+ **/
 CroqueMonster.prototype.croc = function(resource,handler){
-   callCroc(resource+ "?name=" + this.agency + ";pass=" + this.api, handler);
+    request(host + resource + "?name=" + this.agency + ";pass=" + this.api, handler);
 };
 
-/**
+/** section: CroqueMonster
+ * CroqueMonster.monsters([handler]) -> undefined
+ * - handler (Function): callback handler
  * récupère la liste des monstres
  * @api public
- */
- 
+ **/
 CroqueMonster.prototype.monsters = function(handler){
     this.croc('/api/monsters.xml', wrapHandler('monster',handler));
 };
 
 /**
+ * CroqueMonster.contracts([resource],[handler]) -> undefined
+ * - handler (Function): callback handler
  * récupère la liste des contrats
  * @api public
- */
+ **/
 CroqueMonster.prototype.contracts = function(handler){
     this.croc('/api/contracts.xml', wrapHandler('contract',handler));
 };
 
 
-/**
- * récupère la liste des contrats
- * @api public
- */
+/** 
+ * CroqueMonster.affecter([monsters],[contracts],[options]) -> undefined
+ * - monsters (Array): monsters
+ * - contracts (Array): contracts
+ * - options (Object): options
+ *
+ * Affecte les monstres à des contrats.
+ **/
 CroqueMonster.prototype.affecter = function(monsters, contracts, options){
     var result = [];
     _(monsters).chain()

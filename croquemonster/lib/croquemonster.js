@@ -1,9 +1,8 @@
-
-var http = require('http');
-var util = require('util');
-var colors = require('./colours');
-var CroqueMonster = require('./CroqueMonster').CroqueMonster;
-var _ = require('underscore')._;
+var http = require('http'),
+    util = require('util'),
+    colors = require('colors'),
+    CroqueMonster = require('./CroqueMonster').CroqueMonster,
+    _ = require('underscore')._;
 
 // Command line args
 var USERNAME = process.argv[2];
@@ -28,10 +27,10 @@ croqmonstre.contracts(function(err,coll){
     afficherContratsInfernaux(coll);
     _(croqmonstre.affecter(monsters,contracts,{'treshold':89,'min':4500})).each(function(aff){
         console.log(
-            colours.green+aff.contract.name.rightpad(6).abbrev(6)
-            +colours.reset+' ('+aff.gain.toFixed()+') '
-            +colours.red+aff.monster.name.rightpad(8).abbrev(8) +' '
-            +colours.reset+ aff.estimation.toFixed().toString().rightpad(3) 
+            aff.contract.name.rightpad(6).abbrev(6).green
+            + ' ('+aff.gain.toFixed()+') '
+            + aff.monster.name.rightpad(8).abbrev(8).red + ' '
+            + aff.estimation.toFixed().toString().rightpad(3) 
             + '% http://www.croquemonster.com/contract?cid='+aff.contract.id+';mid='+aff.monster.id);
     });
 });
@@ -49,12 +48,6 @@ String.prototype.abbrev = function (len, char){
     }
     return this.substring(0,len-1) + (char||'.');
 }
-
-
-function affecterSimple(){
-  console.log(monsters[0].name +' - '+contracts[0].name+' : '+estimate(monsters[0], contracts[0]) +'%');
-}
-
 
 function afficherMonstres(mons){
   var sum = _(mons).chain()

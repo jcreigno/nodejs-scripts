@@ -2,7 +2,7 @@ var vows = require('vows'),
     util = require('util'),
     assert = require('assert');
 
-var CroqueMonster = require('../CroqueMonster').CroqueMonster;
+var CroqueMonster = require('../lib/CroqueMonster').CroqueMonster;
 
 
 vows.describe('Création d\'un objet CroqueMonster').addBatch({
@@ -27,7 +27,7 @@ vows.describe('Création d\'un objet CroqueMonster').addBatch({
                 assert.ok(res);
                 assert.equal(res.length,0);
             }
-        },
+        }, 
         'on appelle la méthode contracts :': {
             topic: function(croc) { croc.monsters(this.callback)},
             'on récupère un resultat vide' : function(err, res){
