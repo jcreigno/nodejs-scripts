@@ -15,21 +15,21 @@ vows.describe('Création d\'un objet CroqueMonster').addBatch({
             assert.equal(estim.agency, 'a');
             assert.equal(estim.api, 'b');
         },
-        'Il contient un méthode monsters': function (estim) {
-           assert.ok(estim.monsters);
+        'Il contient un méthode listMonsters': function (estim) {
+           assert.ok(estim.listMonsters);
         },
-        'Il contient un méthode contracts': function (estim) {
-           assert.ok(estim.contracts);
+        'Il contient un méthode listContracts': function (estim) {
+           assert.ok(estim.listContracts);
         },
         'on appelle la méthode monsters :': {
-            topic: function(croc) { croc.monsters(this.callback)},
+            topic: function(croc) { croc.listMonsters(this.callback)},
             'on récupère un resultat vide' : function(err, res){
                 assert.ok(res);
                 assert.equal(res.length,0);
             }
         }, 
         'on appelle la méthode contracts :': {
-            topic: function(croc) { croc.monsters(this.callback)},
+            topic: function(croc) { croc.listContracts(this.callback)},
             'on récupère un resultat vide' : function(err, res){
                 assert.ok(res);
                 assert.equal(res.length,0);

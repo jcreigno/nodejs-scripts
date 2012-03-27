@@ -1,4 +1,7 @@
-
+/** 
+ *  croc
+ *  
+ **/
 exports.croc = function(){
 
 /*
@@ -32,7 +35,12 @@ function estimateSimple (m, c) {
 
 
 return {
-    /* Le pourcentage de réussite pour chaque compétence est donné par :
+    /**
+     * croc.estimate(monstre,contrat) -> Number
+     * - monstre (Object): le monstre considéré.
+     * - contrat (Object): le contrat à évaluer.
+     * 
+     * Le pourcentage de réussite pour chaque compétence est donné par :
      * 
      * <pre>
      * 95 + 5 x ([compétence du monstre] - [compétence requise]) - difficulté
@@ -48,10 +56,7 @@ return {
      * Elle est visible quand on récupère les données du contrat via l'API,
      * sinon on a le pourcentage directement ! Donc cela ne veut pas toujours
      * dire grand chose qu'un contrat demande "x en sadisme", mieux vaut se fier au pourcentage donné.
-     * @param {Montre} m le monstre considéré.
-     * @param {Contract} c le contrat à évaluer.
-     * @api public
-     */
+     **/
     estimate: function(m, c) {
         var estimate = estimateSimple(carac(m), c);
         // controle :
