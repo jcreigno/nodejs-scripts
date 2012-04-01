@@ -42,16 +42,15 @@ if (!USERNAME || !APIKEY) {
   return console.log("Usage: node croquemonster.js <croc_username> <croc_apikey>");
 }
 
-
-Seq()
-    .push(new CroqueMonster(USERNAME, APIKEY))
+var croc = new CroqueMonster(USERNAME, APIKEY);
+Seq([croc])
     .par(function(croqmonstre) { croqmonstre.listMonsters(this) })
     .par(function(croqmonstre) { croqmonstre.listContracts(this) })
     .seq(function(monsters, contracts){
-        afficherMonstres(this.vars.monsters = monsters);
-        afficherContratsInfernaux(this.vars.contracts = contracts);
-    }).seq(function(croqmonstre){
-        _(croqmonstre.affecter(this.vars.monsters,this.vars.contracts,{'treshold':89,'min':4500})).each(function(aff){
+        afficherMonstres(monsters);
+        afficherContratsInfernaux(contracts);
+
+        _(croc.affecter(monsters, contracts, {'treshold':89,'min':4500})).each(function(aff){
             console.log(
                 aff.contract.name.rightpad(6).abbrev(6).green
                 + ' ('+aff.gain.toFixed()+') '
