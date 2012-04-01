@@ -30,7 +30,7 @@ var CroqueMonster = exports.CroqueMonster = function(a,key){
             var parser = sax.parser(true);
             var coll = [];
             parser.onopentag = function (node) {
-                if(node.name == tagName){
+                if(node.name === tagName){
                     coll.push(node.attributes);
                 }
             };
@@ -39,20 +39,21 @@ var CroqueMonster = exports.CroqueMonster = function(a,key){
         };
     }
 
-    function croc(resource,handler) {
-        request(host + resource + "?name=" + this.agency + ";pass=" + this.api, handler);
+    function buildurl(resource,agency,api) {
+        return { url : host + resource, qs:{name:agency,pass:api}};
     }
 
     return {
         agency:a,
         api:key,
         listMonsters: function(handler){
-            croc('/api/monsters.xml', wrapHandler('monster',handler));
+            request(buildurl('/api/monsters.xml',this.agency,this.api), wrapHandler('monster',handler));
         },
         listContracts: function(handler){
-            croc('/api/contracts.xml', wrapHandler('contract',handler));
+            request(buildurl('/api/contracts.xml',this.agency,this.api), wrapHandler('contract',handler));
         },
         affecter: function(monsters, contracts, options){
+            //console.log('monsters : '+monsters.length + ' contract : '+contracts.length);
             var result = [];
             _(monsters).chain()
                 .select(function(m){return m.contract == null;})
