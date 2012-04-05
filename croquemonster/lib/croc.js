@@ -62,21 +62,9 @@ return {
         // controle :
         // 100 + 5 x ([contrôle du monstre] - k x [gourmandise du monstre])
         if (c.greediness == 0) {
-            var k = 1;
-            switch (parseInt(c.kind)) {
-              case 3:
-	                k = 2;
-	                break;
-              case 2:
-	                k = 1.5;
-	                break;
-              case 1:
-	                k = 1;
-	                break;
-            }
+            var k = parseInt(c.kind) /2 + 0.5;
             var control = (100 + 5 * (m.control - k * m.greediness));
             return estimate * control / 100;
-
         }
         return estimate;
     }
