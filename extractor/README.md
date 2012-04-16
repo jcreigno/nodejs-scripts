@@ -1,4 +1,4 @@
-Extractor
+file-extractor
 =========
 
 > Extract data from files with regular expressions.
@@ -12,7 +12,7 @@ synopsis
 Start extracting stdin :
 
 ```javascript
-    var extractor = require('extractor');
+    var extractor = require('file-extractor');
 
     extractor().matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m){
         console.log(m);
@@ -21,7 +21,7 @@ Start extracting stdin :
 Using multiple patterns :
 
 ```javascript
-    var extractor = require('extractor');
+    var extractor = require('file-extractor');
 
     extractor()
         .matches(/regex1/, cb1)
@@ -33,7 +33,7 @@ Using multiple patterns :
 installation
 ------------
 
-    $ npm install extractor
+    $ npm install file-extractor
 
 API
 ===
