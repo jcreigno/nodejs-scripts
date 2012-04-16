@@ -1,6 +1,6 @@
 {
   "name": "logs-extractor",
-  "description": "Extract data from log files.",
+  "description": "Extract data from files.",
   "version": "0.1.0",
   "author": "jerome creignou",
   "dependencies": {
