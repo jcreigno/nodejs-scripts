@@ -1,11 +1,10 @@
 {
-  "name": "logs-extractor",
+  "name": "extractor",
   "description": "Extract data from files.",
   "version": "0.1.0",
   "author": "jerome creignou",
   "dependencies": {
-    "carrier": "~0.1.7",
-    "vows": "~0.6.2"
+    "carrier": "~0.1.7"
   },
   "main": "./lib/main.js",
   "directories": {
@@ -14,5 +13,7 @@
   "engines": {
     "node": ">=0.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vows": "~0.6.2"
+  }
 }
