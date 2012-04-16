@@ -1,19 +1,23 @@
 {
-  "name": "extractor",
-  "description": "Extract data from files.",
-  "version": "0.1.0",
-  "author": "jerome creignou",
-  "dependencies": {
-    "carrier": "~0.1.7"
-  },
-  "main": "./lib/main.js",
-  "directories": {
-    "lib": "./lib"
-  },
-  "engines": {
-    "node": ">=0.3.0"
-  },
-  "devDependencies": {
-    "vows": "~0.6.2"
-  }
+    "name": "file-extractor",
+    "description": "Extract data from files using regular expressions.",
+    "version": "0.1.0",
+    "author": "jerome creignou",
+    "repository" : {
+        "type" : "git", 
+        "url" : "https://jcreigno@github.com/jcreigno/nodejs-scripts.git"
+    },
+    "dependencies": {
+        "carrier": "~0.1.7"
+    },
+    "main": "./lib/main.js",
+    "directories": {
+        "lib": "./lib"
+    },
+    "engines": {
+        "node": ">=0.3.0"
+    },
+    "devDependencies": {
+        "vows": "~0.6.2"
+    }
 }
