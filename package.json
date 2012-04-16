@@ -2,7 +2,10 @@
     "name": "file-extractor",
     "description": "Extract data from files using regular expressions.",
     "version": "0.1.0",
-    "author": "jerome creignou",
+    "author": {
+        "name" : "jerome creignou",
+        "url" : "https://github.com/jcreigno/nodejs-scripts"
+    },
     "repository" : {
         "type" : "git", 
         "url" : "https://jcreigno@github.com/jcreigno/nodejs-scripts.git"
