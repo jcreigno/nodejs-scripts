@@ -10,6 +10,7 @@ Extractor scans file line by line. Registred callbacks are notified when a patte
 synopsis
 --------
 Start extracting stdin :
+
 ```javascript
     var extractor = require('extractor');
 
@@ -18,6 +19,7 @@ Start extracting stdin :
     }).start();
 ```  
 Using multiple patterns :
+
 ```javascript
     var extractor = require('extractor');
 
