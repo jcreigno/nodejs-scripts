@@ -1,10 +1,10 @@
 var vows = require('vows'),
     assert = require('assert'),
-    Extractor = require('../lib/Extractor');
+    extractor = require('../lib/main.js');
     
 vows.describe('Extractor').addBatch({
     'Extractor object : ':{
-        topic: new Extractor(),
+        topic: extractor(),
         'as matches method :' : function(e){
             assert.ok(e.matches);
         },
@@ -14,7 +14,7 @@ vows.describe('Extractor').addBatch({
     }
 }).addBatch({
     'Extractor object with accumulator : ':{
-        topic: new Extractor({myvar:0}),
+        topic: extractor({myvar:0}),
         'as matches method :' : function(e){
             assert.ok(e.matches);
         },

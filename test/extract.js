@@ -1,7 +1,7 @@
 var util = require('util'), 
-    Extractor = require('./lib/Extractor'),
+    extractor = require('../lib/main.js'),
     fs = require('fs');
 
-var readstream = fs.createReadStream('./sample.csv',{});
+//var s = fs.createReadStream('./sample.csv',{});
 
-new Extractor().matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m){console.log(m)}).start(readstream);
+extractor().matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m){console.log(m)}).start();

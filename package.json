@@ -7,7 +7,7 @@
     "carrier": "~0.1.7",
     "vows": "~0.6.2"
   },
-  "main": "./lib/Extractor.js",
+  "main": "./lib/main.js",
   "directories": {
     "lib": "./lib"
   },
