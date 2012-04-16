@@ -46,8 +46,10 @@ The constructor function creates a new `extractor`. Optionnaly pass an accumulat
 .matches(regex, callback)
 --------------------------
 Register a new matching pattern and corresponding callback. Each match is notified using call back. 
+
 * First callback parameter is regex.exec result.
 * Second parameter is the accumulator object.
+
 Return value is `this` to enable method chaining.
 
 .start(readableStream=process.stdin)
