@@ -9,13 +9,13 @@ Extractor scans file line by line. Registred callbacks are notified when a patte
 
 synopsis
 --------
+```javascript
+    var extractor = require('extractor');
 
-    var Extractor = require('Extractor');
-
-    new Extractor().matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m){
+    extractor().matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m){
         console.log(m);
     }).start();
-    
+```  
 installation
 ------------
 
