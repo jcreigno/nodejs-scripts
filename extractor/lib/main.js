@@ -8,7 +8,9 @@ function Extractor(ac) {
     this.vars = ac || {};
 }
 util.inherits(Extractor, EventEmitter);
-module.exports = Extractor;
+module.exports = function(ac){
+    return new Extractor(ac);
+};
 
 Extractor.prototype.matches = function(regexp,cb){
     this.matchers.push({re:regexp,callback:cb});
