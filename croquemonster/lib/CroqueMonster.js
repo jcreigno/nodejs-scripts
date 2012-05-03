@@ -27,6 +27,10 @@ var CroqueMonster = exports.CroqueMonster = function(a,key){
 
     function wrapHandler (tagName, handler){
         return function(err,res,str){
+            if(err){
+                handler(err);
+                return;
+            }
             var parser = sax.parser(true);
             var coll = [];
             parser.onopentag = function (node) {
