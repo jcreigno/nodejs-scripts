@@ -34,6 +34,6 @@ vows.describe('Création d\'un objet CroqueMonster').addBatch({
                 assert.ok(res);
                 assert.equal(res.length,0);
             }
-        },
+        }
     }
 }).export(module); // Export the Suite

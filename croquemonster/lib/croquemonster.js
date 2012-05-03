@@ -43,8 +43,8 @@ if (!USERNAME || !APIKEY) {
 
 var croc = new CroqueMonster(USERNAME, APIKEY);
 Seq([croc])
-    .par(function(croqmonstre) { croqmonstre.listMonsters(this) })
-    .par(function(croqmonstre) { croqmonstre.listContracts(this) })
+    .par(function(croqmonstre) { croqmonstre.listMonsters(this); })
+    .par(function(croqmonstre) { croqmonstre.listContracts(this); })
     .seq(function(monsters, contracts){
         afficherMonstres(monsters);
         afficherContratsInfernaux(contracts);
