@@ -60,14 +60,14 @@ var CroqueMonster = exports.CroqueMonster = function(a,key){
             //console.log('monsters : '+monsters.length + ' contract : '+contracts.length);
             var result = [];
             _(monsters).chain()
-                .select(function(m){return m.contract == null;})
+                .select(function(m){return !m.contract;})
                 .each(function(m){
                     var finRepos = m.fatigue * 3600;
                     var max = 0;
                     var aff;
                     _(contracts).chain()
                         .select(function(c){
-                            var dispo = c.monster == null || !c.accepted;
+                            var dispo = !c.monster || !c.accepted;
                             return dispo && (finRepos < c.countdown);
                         })
                         .each(function(c){

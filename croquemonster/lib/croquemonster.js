@@ -1,5 +1,4 @@
-var http = require('http'),
-    util = require('util'),
+var util = require('util'),
     colors = require('colors'),
     CroqueMonster = require('./CroqueMonster').CroqueMonster,
     _ = require('underscore')._,
@@ -10,7 +9,7 @@ String.prototype.rightpad = function (len, char){
     if(this.length >= len){
         return this;
     }
-    return this + Array(len + 1 - this.length).join(char||' ');
+    return this + new Array(len + 1 - this.length).join(char||' ');
 };
 
 String.prototype.abbrev = function (len, char){
@@ -22,14 +21,14 @@ String.prototype.abbrev = function (len, char){
 
 function afficherMonstres(mons){
   var sum = _(mons).chain()
-    .select(function(m){return m.contract == null;})
+    .select(function(m){return !m.contract;})
     .reduce(function(memo, num){ return memo + 1; }, 0).value();
   console.log(sum + ' monstres disponibles');
 }
 
 function afficherContratsInfernaux(cs){
   var sum = _(cs).chain()
-    .select(function(c){return c.kind == 5;})
+    .select(function(c){return c.kind === 5;})
     .reduce(function(memo, num){ return memo + 1; }, 0).value();
   console.log(sum + ' contrat infernal');
 }
