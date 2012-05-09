@@ -76,5 +76,5 @@ Events
 
 'end'
 -----
-Sent when end of stream is reached.
+Sent when end of stream is reached. The current accumulator is given as first parameter to the event listener.
 
