@@ -1,7 +1,7 @@
 file-extractor
 =========
 
-> Extract data from files with regular expressions.
+> Extract data from text files or log files using regular expressions.
 
 introduction
 ------------
@@ -29,6 +29,21 @@ Using multiple patterns :
         .matches(/regex3/, cb3).start();
 ```  
 
+Using an accumulator :
+
+```javascript
+    var util = require('util'), 
+        extractor = require('file-extractor'),
+        fs = require('fs');
+
+    var s = fs.createReadStream(__dirname + '/sample.csv',{});
+    extractor({'count': 0}).matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m,vars){
+        console.log(m);
+        vars.count ++;
+    }).on('end',function(vars){
+        console.log(vars.count + ' matches found.');
+    }).start(s);
+```  
 
 installation
 ------------
@@ -40,7 +55,7 @@ API
 
 extractor(ac={})
 ----------------
-The constructor function creates a new `extractor`. Optionnaly pass an accumulator as parameters.
+The constructor function creates a new `extractor`. Optionnaly pass an accumulator as parameter.
 
 
 .matches(regex, callback)
