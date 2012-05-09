@@ -3,12 +3,11 @@ var util = require('util'),
     fs = require('fs');
 
 var s = fs.createReadStream(__dirname + '/sample.csv',{});
-var ac = {'count': = 0};
-extractor(ac).matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m,vars){
+extractor({'count': 0}).matches(/;(?!(?:[^",]|[^"],[^"])+")/,function(m,vars){
     console.log(m);
     vars.count ++;
-}).on('end',function(){
-    console.log(ac.count + ' matches found.');
+}).on('end',function(vars){
+    console.log(vars.count + ' matches found.');
 }).start(s);
 
 
