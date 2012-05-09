@@ -32,8 +32,7 @@ Using multiple patterns :
 Using an accumulator :
 
 ```javascript
-    var util = require('util'), 
-        extractor = require('file-extractor'),
+    var extractor = require('file-extractor'),
         fs = require('fs');
 
     var s = fs.createReadStream(__dirname + '/sample.csv',{});

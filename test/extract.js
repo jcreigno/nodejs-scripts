@@ -1,5 +1,4 @@
-var util = require('util'), 
-    extractor = require('../lib/main.js'),
+var extractor = require('../lib/main.js'),
     fs = require('fs');
 
 var s = fs.createReadStream(__dirname + '/sample.csv',{});
